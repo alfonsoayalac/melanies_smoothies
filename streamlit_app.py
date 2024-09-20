@@ -1,6 +1,9 @@
 # Import python packages
 import streamlit as st
 from snowflake.snowpark.functions import col
+import requests
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+
 
 # Write directly to the app
 st.title("Customize your smoothie :cup_with_straw:")
@@ -29,7 +32,7 @@ ingredients_list = st.multiselect('Choose uptu 5 ingredients: ', my_dataframe, m
 #option = st.selectbox( label, options)
     #, index=0, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None,*, placeholder="Choose an option", disabled=False, label_visibility="visible")
 
-
+fv = st.dataframe(data=fruityvice_response.json, use_container_width = True)
     
 
 if ingredients_list:
